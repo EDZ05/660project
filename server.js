@@ -11,7 +11,7 @@ const app = express();
 const indexControllers = require('./controllers/index.js');
 const aboutControllers = require('./controllers/about.js');
 const eventpageControllers = require('./controllers/eventpage.js')
-const neweventControllers = require('./controllers/new.js')
+const neweventControllers = require('./controllers/newevent.js')
 
 // Configure our "templating engine", which is
 // Mozilla's "Nunjucks" in this case.
