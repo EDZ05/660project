@@ -31,7 +31,7 @@ app.set('view engine', 'html');
 app.get('/', indexControllers.index);
 app.get('/about', aboutControllers.about);
 app.get('/events', eventpageControllers.eventpage);
-app.get('/new', neweventControllers.newevent);
+app.get('/events/new', neweventControllers.newevent);
 
 // Start up the application and listen on the specified
 // port, or default to port 4000.
