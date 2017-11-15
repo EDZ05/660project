@@ -1,8 +1,10 @@
 'use strict';
 
-const express = require('express');
+var express = require('express');
 
-const app = express();
+var app = express();
+
+var path = require('path');
 
 // Import our controllers from their files. Notice how we're
 // giving the `require` built-in function the path a file
@@ -25,7 +27,10 @@ nunjucks.configure('views', {
     autoescape: true,
     express: app,
 });
+
 app.set('view engine', 'html');
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Now, attach our "controllers" to our "routes".
 app.get('/', indexControllers.index);
@@ -36,3 +41,8 @@ app.get('/events/new', neweventControllers.newevent);
 // Start up the application and listen on the specified
 // port, or default to port 4000.
 app.listen(process.env.PORT || 4000);
+
+
+
+
+
