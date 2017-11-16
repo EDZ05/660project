@@ -12,9 +12,6 @@ function listEvents(request, response) {
         title: 'List of events',
         eventMatchingQuery: listofEvents,
     };
-    if(query){
-      contextData.peopleMatchignQuery = allPeople.filter(person => person.toLowerCase().includes(query.toLowerCase()))
-    }
     response.render('events', contextData);
 }
 
