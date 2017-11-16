@@ -3,12 +3,10 @@
 {% block body %}
   This is the body of the index...
 
-    {%if eventMatchingQuery %}
         <ul>
-        {% for event in eventMatchingQuery %}
-        <li>{{event}}</li>
+        {% for event in events %}
+          <li>{{event}}</li>
         {% endfor %}
         </ul>
-    {% endif %}
 
 {% endblock %}
