@@ -1,9 +1,10 @@
 'use strict';
 
 var express = require('express');
+var bodyParser = require('body-parser');
 
 var app = express();
-
+app.use(bodyParser.urlencoded({extended: true}));
 var path = require('path');
 
 // Import our controllers from their files. Notice how we're
@@ -37,7 +38,7 @@ app.get('/', indexControllers.index);
 app.get('/about', aboutControllers.about);
 app.get('/events', eventpageControllers.eventpage);
 app.get('/events/new', neweventControllers.newevent);
-
+app.post('/events/new', neweventControllers.newevent);
 // Start up the application and listen on the specified
 // port, or default to port 4000.
 app.listen(process.env.PORT || 4000);
