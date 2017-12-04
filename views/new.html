@@ -1,13 +1,33 @@
 {% extends "layout.html" %}
 
 {% block body %}
+
+
   <form action="/events/new" method="post">
           <label for="title">Event Title</label>
-          <input type="text" name ="title" maxlength="50" required><br>
+          <input type="text" name ="title"><br>
+          {% if not hasTitle %}
+            <ul class="form-errors">An event title is required</ul>
+          {% endif %}
+          {% if not titlel50 %}
+            <ul class="form-errors">Event title must be 50 characters or less</ul>
+          {% endif %}
           <label for="image">Event Image</label>
-          <input type="url" name ="image" required><br>
+          <input type="url" name ="image"><br>
+          {% if not hasImage %}
+            <ul class="form-errors">An event image is required</ul>
+          {% endif %}
+          {% if not imageFormat %}
+            <ul class="form-errors">Image must be .png, .jpg, .gif</ul>
+          {% endif %}
+          {% if not imageURL %}
+            <ul class="form-errors">Image must be a valid URL</ul>
+          {% endif %}
           <label for="location">Location</label>
-          <input type="text" name ="location" maxlength="50" required><br>
+          <input type="text" name ="location"><br>
+          {% if not hasLocation %}
+            <ul class="form-errors">An event location is required</ul>
+          {% endif %}
           <label for="year">Year</label>
           <select name ="year">
               <option>2017</option>
@@ -94,6 +114,6 @@
               <option>00</option>
               <option>30</option>
           </select><br>
-          <input type="submit" value="Submit">
+          <input name="submit" type="submit" value="Submit">
       </form>
 {% endblock %}
