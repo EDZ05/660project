@@ -1,15 +1,13 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  This is the body of the index.
 
-<p>
-  new paragraph
-</p>
+<a href="/events/new" id="new">New Event</a>
 
 <ul>
   {% for event in events %}
-    <li>
+    <li class="event" id="event-{{event.id}}">
+      <a href="/events/{{event.id}}" id="title">Event Details</a>
       {{event.title}}
       <time>{{event.date}}</time>
     </li>
