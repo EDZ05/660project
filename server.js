@@ -15,6 +15,7 @@ const indexControllers = require('./controllers/index.js');
 const aboutControllers = require('./controllers/about.js');
 const eventpageControllers = require('./controllers/eventpage.js')
 const neweventControllers = require('./controllers/newevent.js')
+const eventControllers = require('./controllers/events.js')
 
 // Configure our "templating engine", which is
 // Mozilla's "Nunjucks" in this case.
@@ -39,6 +40,8 @@ app.get('/about', aboutControllers.about);
 app.get('/events', eventpageControllers.eventpage);
 app.get('/events/new', neweventControllers.newevent);
 app.post('/events/new', neweventControllers.newevent);
+app.get('/events/:eventID', eventControllers.eventDetail);
+
 // Start up the application and listen on the specified
 // port, or default to port 4000.
 app.listen(process.env.PORT || 4000);

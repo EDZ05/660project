@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <h1 id="title">
+    {{event.title}}
+  </h1>
+  
+  <p>
+    <span id="date">
+      {{event.date}}
+    </span>
+  </p>
+  <p>
+    <span id="location">
+      {{event.location}}
+    </span>
+  </p>
+  <ul id="attendees">
+      {% for emailAddress in event.attending %}
+        <li class="list-group-item">
+          {{emailAddress}}
+        </li>
+      {% endfor %}
+  </ul>
+  <img id="image" src="{{event.image}}"></img>
+  
+{% endblock %}
+
