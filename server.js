@@ -13,9 +13,10 @@ var path = require('path');
 // specified in our `package.json` file, like "express".
 const indexControllers = require('./controllers/index.js');
 const aboutControllers = require('./controllers/about.js');
-const eventpageControllers = require('./controllers/eventpage.js')
-const neweventControllers = require('./controllers/newevent.js')
-const eventControllers = require('./controllers/events.js')
+const eventpageControllers = require('./controllers/eventpage.js');
+const neweventControllers = require('./controllers/newevent.js');
+const eventControllers = require('./controllers/events.js');
+const apiControllers = require('./controllers/api.js');
 
 // Configure our "templating engine", which is
 // Mozilla's "Nunjucks" in this case.
@@ -41,6 +42,8 @@ app.get('/events', eventpageControllers.eventpage);
 app.get('/events/new', neweventControllers.newevent);
 app.post('/events/new', neweventControllers.newevent);
 app.get('/events/:eventID', eventControllers.eventDetail);
+app.get('/api/events', apiControllers.api);
+app.get('/api/events/:search', apiControllers.search);
 
 // Start up the application and listen on the specified
 // port, or default to port 4000.
