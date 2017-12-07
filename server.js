@@ -2,7 +2,7 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
-var pg = require('pg');
+//var pg = require('pg');
 
 var app = express();
 app.use(bodyParser.urlencoded({extended: true}));
