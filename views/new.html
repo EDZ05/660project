@@ -28,6 +28,9 @@
           {% if not hasLocation %}
             <ul class="form-errors">An event location is required</ul>
           {% endif %}
+          {% if not locationl50 %}
+            <ul class="form-errors">Event location must be 50 characters or less</ul>
+          {% endif %}
           <label for="year">Year</label>
           <select name ="year">
               <option>2017</option>

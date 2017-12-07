@@ -2,6 +2,13 @@
 // Create a function which is a "controller", it
 // handles a request, writing the response.
 function api(request, response) {
+    
+    var requestURL = request.url;
+    if (requestURL.includes("?search=")){
+        search(request, response)
+    }else{
+        
+    
         
     const pg = require('pg');
     const client = new pg.Client({
@@ -26,14 +33,15 @@ function api(request, response) {
         response.json({events: eventVar});
         
     })
+    }
 }
 
 function search(request, response) {
     
-    var eventTitle = request.params.search;
-    eventTitle = '\'%' + eventTitle + '%\''; 
+    
+    var eventTitle = request.url.substr(request.url.indexOf('=')+1,request.url.length);
     //console.log(eventTitle);
-        
+    eventTitle = '\'%' + eventTitle + '%\'';
     const pg = require('pg');
     const client = new pg.Client({
         user: "ijjrnrzlkmyomo",
@@ -52,11 +60,35 @@ function search(request, response) {
     client.query(query, (err, res) => {
         if (err) {
             console.log(err.stack);
-        } 
-        var eventVar = res.rows;
+        }
+        //console.log(res.rows.length);
+        var eventVar = parseJSON(res.rows);
         response.json({events: eventVar});
         
     })
+}
+
+function parseJSON(event){
+    var sqlEvent = event;
+    //console.log(sqlEvent);
+    var output = [];
+    for (var i = 0;i<sqlEvent.length;i++){
+        var attending = sqlEvent[i].attending;
+        if (sqlEvent[i].attending == null){
+            attending = [];
+        }
+        
+        output[i] = {
+            "id": sqlEvent[i].id,
+            "title": sqlEvent[i].title,
+            "location": sqlEvent[i].location,
+            "image": sqlEvent[i].image,
+            "time": sqlEvent[i].date,
+            "attendees": attending,
+            
+        }
+    }
+    return output;
 }
 
 module.exports = {

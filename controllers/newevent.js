@@ -25,27 +25,25 @@ function newevent(request, response) {
         
         if(title == ""){
             validation.hasTitle = false;
+        }else if(title.length > 50){
+            validation.titlel50 = false;
         }else if(image == ""){
             validation.hasImage = false;
         }else if(image.length < 4){
             validation.imageFormat = false;
-        }else if(image.substring(image.length - 4) != ".png" || image.substring(image.length - 4) != ".jpg" || image.substring(image.length - 4) != ".gif"){
+        }else if(image.substring(image.length - 4).toLowerCase() != ".png" && image.substring(image.length - 4).toLowerCase() != ".jpg" && image.substring(image.length - 4).toLowerCase() != ".gif"){
             validation.imageFormat = false;
-        }else if(!validURL(image)){
-            validation.imageURL = false;
-        }else if(image == ""){
-            validation.hasImage = false;
+        /*}else if(!validURL(image)){
+            validation.imageURL = false;*/
         }else if(location == ""){
             validation.hasLocation = false;
-        }else if(title.length > 50){
-            validation.titlel50 = false;
         }else if(location.length > 50){
             validation.locationl50 = false;
         }else{
         
         
             const pg = require('pg');
-            const connectionString = process.env.DATABASE_URL || 'postgres://ijjrnrzlkmyomo:8ccf3b5145370c92b5b75f51e1ba82435c559bb37e0a9ff480e4e4fa5f02ce25@ec2-54-235-254-251.compute-1.amazonaws.com:5432/da9ulmsf0vkaes';
+            //const connectionString = process.env.DATABASE_URL || 'postgres://ijjrnrzlkmyomo:8ccf3b5145370c92b5b75f51e1ba82435c559bb37e0a9ff480e4e4fa5f02ce25@ec2-54-235-254-251.compute-1.amazonaws.com:5432/da9ulmsf0vkaes';
             //const client = new pg.Client(connectionString);
             const client = new pg.Client({
                 user: "ijjrnrzlkmyomo",
@@ -61,12 +59,13 @@ function newevent(request, response) {
             text: 'INSERT INTO events(title, date, image, location) VALUES($1, $2, $3, $4)',
             values: [title, date, image, location],
             }
-            
+            //console.log(title);
             client.query(query, (err, res) => {
                 if (err) {
                     console.log(err.stack)
                 } else {
-                    console.log(res.rows[0])
+                    //console.log("success");
+                    //console.log(res.rows[0])
                 }
             })
         }

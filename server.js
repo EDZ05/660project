@@ -43,7 +43,6 @@ app.get('/events/new', neweventControllers.newevent);
 app.post('/events/new', neweventControllers.newevent);
 app.get('/events/:eventID', eventControllers.eventDetail);
 app.get('/api/events', apiControllers.api);
-app.get('/api/events/:search', apiControllers.search);
 
 // Start up the application and listen on the specified
 // port, or default to port 4000.
