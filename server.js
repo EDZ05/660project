@@ -22,11 +22,8 @@ const aboutControllers = require('./controllers/about.js');
 const eventpageControllers = require('./controllers/eventpage.js');
 const neweventControllers = require('./controllers/newevent.js');
 const eventControllers = require('./controllers/events.js');
-<<<<<<< HEAD
 const rsvpControllers = require('./controllers/rsvp.js');
-=======
 const apiControllers = require('./controllers/api.js');
->>>>>>> 9e79664319e1842e1d11949ee413415f36e9092c
 
 // Configure our "templating engine", which is
 // Mozilla's "Nunjucks" in this case.
