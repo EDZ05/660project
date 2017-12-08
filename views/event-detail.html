@@ -24,5 +24,22 @@
   </ul>
   <img id="image" src="{{event.image}}"></img>
   
+  {% if variant %}
+  
+  Contribute? <a href=/'donate' id='donate'>Donate</a> now!
+  
+  {% else %}
+  
+  Contribute? <a href=/'support' id='support'>Support</a> now!
+  
+  {% endif %}
+  
+  <form method="post">
+    <label for="email">RSVP</label>
+    <input type="email" name ="email" id="email" pattern=".+@yale.edu" onkeyup="return forceLower(this);" required>
+    <input type="submit" value="Submit">
+  </form>
+  
+  
 {% endblock %}
 

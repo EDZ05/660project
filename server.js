@@ -7,15 +7,21 @@ var app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 var path = require('path');
 
+
+var db = require('./models/db')
+
+db.client.connect();
+
 // Import our controllers from their files. Notice how we're
 // giving the `require` built-in function the path a file
 // locally instead of a dependency that was installed as
 // specified in our `package.json` file, like "express".
 const indexControllers = require('./controllers/index.js');
 const aboutControllers = require('./controllers/about.js');
-const eventpageControllers = require('./controllers/eventpage.js')
-const neweventControllers = require('./controllers/newevent.js')
-const eventControllers = require('./controllers/events.js')
+const eventpageControllers = require('./controllers/eventpage.js');
+const neweventControllers = require('./controllers/newevent.js');
+const eventControllers = require('./controllers/events.js');
+const rsvpControllers = require('./controllers/rsvp.js');
 
 // Configure our "templating engine", which is
 // Mozilla's "Nunjucks" in this case.
@@ -40,6 +46,7 @@ app.get('/about', aboutControllers.about);
 app.get('/events', eventpageControllers.eventpage);
 app.get('/events/new', neweventControllers.newevent);
 app.post('/events/new', neweventControllers.newevent);
+app.post('/events/:eventID', rsvpControllers.rsvp);
 app.get('/events/:eventID', eventControllers.eventDetail);
 
 // Start up the application and listen on the specified
