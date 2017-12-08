@@ -2,6 +2,7 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
+//var pg = require('pg');
 
 var app = express();
 app.use(bodyParser.urlencoded({extended: true}));
@@ -21,7 +22,11 @@ const aboutControllers = require('./controllers/about.js');
 const eventpageControllers = require('./controllers/eventpage.js');
 const neweventControllers = require('./controllers/newevent.js');
 const eventControllers = require('./controllers/events.js');
+<<<<<<< HEAD
 const rsvpControllers = require('./controllers/rsvp.js');
+=======
+const apiControllers = require('./controllers/api.js');
+>>>>>>> 9e79664319e1842e1d11949ee413415f36e9092c
 
 // Configure our "templating engine", which is
 // Mozilla's "Nunjucks" in this case.
@@ -48,6 +53,7 @@ app.get('/events/new', neweventControllers.newevent);
 app.post('/events/new', neweventControllers.newevent);
 app.post('/events/:eventID', rsvpControllers.rsvp);
 app.get('/events/:eventID', eventControllers.eventDetail);
+app.get('/api/events', apiControllers.api);
 
 // Start up the application and listen on the specified
 // port, or default to port 4000.
