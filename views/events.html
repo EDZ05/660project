@@ -5,6 +5,17 @@
   <img id="event_img"> Event Image </img>
   <h5 id ="date"> Date </h4>
   <h5 id ="location"> Location </h4> 
+  
+  <script type="text/javascript">   
+    var redirect, pageOptions = ['donate', 'support'];
+    if (Math.random() < .5){
+      document.write("Want to contribute? Donate now!");
+    } 
+    else {
+      document.write("Want to contribute? Support now!");
+    }
+  </script>
+
   <p id ="attendees"> Attendees </p>
   <form action="">
     <input type="radio" name="attending" value="yes">Yes
