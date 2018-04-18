@@ -5,6 +5,7 @@ const client = require('../models/db.js').client;
 // handles a request, writing the response.
 function eventDetail(request, response) {
     const eventID = parseInt(request.params.eventID, 10);
+    console.log(eventID)
     //client.connect();
     client.query('SELECT * FROM events WHERE id = $1', [eventID], (err, res) => {
         if(err){
