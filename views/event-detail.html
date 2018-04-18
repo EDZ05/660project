@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <h1 id="title">
+    {{event.title}}
+  </h1>
+  
+  <p>
+    <span id="date">
+      {{event.date}}
+    </span>
+  </p>
+  <p>
+    <span id="location">
+      {{event.location}}
+    </span>
+  </p>
+  <ul id="attendees">
+      {% for emailAddress in event.attending %}
+        <li class="list-group-item">
+          {{emailAddress}}
+        </li>
+      {% endfor %}
+  </ul>
+  <img id="image" src="{{event.image}}"></img>
+  
+  {% if variant %}
+  
+  Contribute? <a href=/'donate' id='donate'>Donate</a> now!
+  
+  {% else %}
+  
+  Contribute? <a href=/'support' id='support'>Support</a> now!
+  
+  {% endif %}
+  
+  <form method="post">
+    <label for="email">RSVP</label>
+    <input type="email" name ="email" id="email" pattern=".+@yale.edu" onkeyup="return forceLower(this);" required>
+    <input type="submit" value="Submit">
+  </form>
+  
+  
+{% endblock %}
+

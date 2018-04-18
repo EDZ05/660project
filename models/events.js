@@ -1,6 +1,6 @@
 'use strict';
 
-/**
+ /**
  * An Array of all the events
  */
 const allEvents = [
@@ -56,5 +56,6 @@ function getById(id) {
 
 module.exports = {
     all: allEvents,
+    //results: allResults,
     getById,
 };
